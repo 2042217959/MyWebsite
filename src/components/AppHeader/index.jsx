@@ -55,7 +55,7 @@ const AppHeader = memo(() => {
           animate="animate"
         >
           <Logo>
-            <NavLink to="/home">个人网站</NavLink>
+            <NavLink to="/home">魔芋小狗前端日记</NavLink>
           </Logo>
         </motion.div>
 

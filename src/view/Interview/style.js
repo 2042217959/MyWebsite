@@ -6,7 +6,7 @@ export const InterviewWrapper = styled.div`
   padding: 2rem;
 
   h1 {
-    text-align: center;
+    text-align: left;
     margin-bottom: 3rem;
     color: ${props => props.theme.text.primary};
     font-size: 2.5rem;
@@ -16,8 +16,8 @@ export const InterviewWrapper = styled.div`
       content: '';
       position: absolute;
       bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      transform: none;
       width: 60px;
       height: 3px;
       background: ${props => props.theme.primary};
@@ -55,8 +55,8 @@ export const CategorySection = styled.section`
 `
 
 export const InterviewList = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 `
 
@@ -69,7 +69,8 @@ export const InterviewItem = styled.div`
   transition: all 0.3s ease;
   
   &:hover {
-    transform: translateX(10px);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .status-dot {
@@ -77,6 +78,7 @@ export const InterviewItem = styled.div`
     height: 12px;
     border-radius: 50%;
     margin-right: 1rem;
+    flex-shrink: 0;
     background: ${props => {
       switch (props.status) {
         case 'completed':
@@ -95,11 +97,16 @@ export const InterviewItem = styled.div`
     flex: 1;
     color: ${props => props.theme.text.primary};
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .status-text {
     color: ${props => props.theme.text.secondary};
     font-size: 0.9rem;
+    margin-left: 0.5rem;
+    flex-shrink: 0;
   }
 `
 
