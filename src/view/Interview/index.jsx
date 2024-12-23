@@ -1,7 +1,10 @@
 import React from 'react'
 import { InterviewWrapper, CategorySection, InterviewList, InterviewItem } from './style'
+import { useNavigate } from 'react-router-dom'
 
 const Interview = () => {
+  const navigate = useNavigate()
+
   const interviewTopics = [
     {
       id: 1,
@@ -32,6 +35,10 @@ const Interview = () => {
     }
   ]
 
+  const handleItemClick = (id) => {
+    navigate(`/interview/${id}`)
+  }
+
   return (
     <InterviewWrapper>
       <h1>面试准备清单</h1>
@@ -40,7 +47,11 @@ const Interview = () => {
           <h2>{topic.category}</h2>
           <InterviewList>
             {topic.items.map(item => (
-              <InterviewItem key={item.id} status={item.status}>
+              <InterviewItem 
+                key={item.id} 
+                status={item.status}
+                onClick={() => handleItemClick(item.id)}
+              >
                 <span className="status-dot"></span>
                 <span className="title">{item.title}</span>
                 <span className="status-text">

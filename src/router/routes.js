@@ -4,6 +4,9 @@ import About from "../view/About";
 import Projects from "../view/Projects";
 import Knowledge from "../view/Knowledge";
 import Interview from "../view/Interview";
+import ProjectDetail from "../view/Projects/detail";
+import KnowledgeDetail from "../view/Knowledge/detail";
+import InterviewDetail from "../view/Interview/detail";
 
 const routes = [
   { path: "/", element: <Navigate to="/home" /> },
@@ -20,12 +23,24 @@ const routes = [
     element: <Projects />,
   },
   {
+    path: "/projects/:id",
+    element: <ProjectDetail />,
+  },
+  {
     path: "/knowledge",
     element: <Knowledge />,
   },
   {
+    path: "/knowledge/:id",
+    element: <KnowledgeDetail />,
+  },
+  {
     path: "/interview",
     element: <Interview />,
+  },
+  {
+    path: "/interview/:id",
+    element: <InterviewDetail />,
   }
 ];
 

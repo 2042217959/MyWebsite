@@ -1,7 +1,10 @@
 import React from 'react'
 import { KnowledgeWrapper, CategorySection, KnowledgeGrid, KnowledgeCard } from './style'
+import { useNavigate } from 'react-router-dom'
 
 const Knowledge = () => {
+  const navigate = useNavigate()
+  
   // 示例数据
   const categories = [
     {
@@ -22,6 +25,10 @@ const Knowledge = () => {
     }
   ]
 
+  const handleCardClick = (id) => {
+    navigate(`/knowledge/${id}`)
+  }
+
   return (
     <KnowledgeWrapper>
       <h1>知识库</h1>
@@ -30,7 +37,10 @@ const Knowledge = () => {
           <h2>{category.title}</h2>
           <KnowledgeGrid>
             {category.items.map(item => (
-              <KnowledgeCard key={item.id}>
+              <KnowledgeCard 
+                key={item.id}
+                onClick={() => handleCardClick(item.id)}
+              >
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
                 <div className="card-footer">
