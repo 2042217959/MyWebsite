@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import AppHeader from './components/AppHeader'
 import RouterConfig from './router/routes'
@@ -24,9 +24,9 @@ const ThemedApp = () => {
 const App = () => {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <HashRouter>
         <ThemedApp />
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }
