@@ -23,7 +23,7 @@ const Home = () => {
       <Hero>
         <h1>
           <ReactTyped
-            strings={['欢迎来到我的前端流水账日记~']}
+            strings={['欢迎来到我的前端日记~']}
             typeSpeed={100}
             startDelay={600}
             showCursor
@@ -63,4 +63,4 @@ const Home = () => {
   )
 }
 
-export default Home 
+export default Home

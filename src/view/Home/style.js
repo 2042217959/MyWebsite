@@ -9,16 +9,18 @@ export const Hero = styled.section`
   text-align: center;
   padding: 4rem 0;
   
-  h1 {
-    font-size: 5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(120deg, #1890ff, #722ed1);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    display: inline-block;
-    text-shadow: 0px 2px 8px rgba(24, 144, 255, 0.1);
-  }
+h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, #1890ff, #722ed1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  text-shadow: 0px 2px 8px rgba(24, 144, 255, 0.1);
+  font-family: 'Comic Sans MS', 'Pacifico', sans-serif; /* 使用卡通字体 */
+  font-weight: bold; 
+}
   
   p {
     font-size: 1.2rem;
