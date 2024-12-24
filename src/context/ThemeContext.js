@@ -15,20 +15,21 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  primary: '#1890ff',
-  secondary: '#2A2A2A',
+  primary: '#74B9FF',
+
+  secondary: '#2A2A4C',
   text: {
     primary: '#FFFFFF',
-    secondary: '#E0E0E0'
+    secondary: '#B2BEC3'
   },
   background: {
-    primary: '#141414',
-    secondary: '#1F1F1F'
+    primary: '#2D3436',
+    secondary: '#353B48'
   },
-  hover: '#40a9ff',
+  hover: '#6DC0FF',
   card: {
-    background: '#262626',
-    border: 'rgba(255, 255, 255, 0.1)'
+    background: '#2F3640',
+    border: 'rgba(116, 185, 255, 0.2)'
   }
 }
 

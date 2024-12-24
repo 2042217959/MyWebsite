@@ -42,15 +42,16 @@ const Interview = () => {
   return (
     <InterviewWrapper>
       <h1>面试准备清单</h1>
-      {interviewTopics.map(topic => (
-        <CategorySection key={topic.id}>
+      {interviewTopics.map((topic, topicIndex) => (
+        <CategorySection key={topic.id} index={topicIndex}>
           <h2>{topic.category}</h2>
           <InterviewList>
-            {topic.items.map(item => (
+            {topic.items.map((item, itemIndex) => (
               <InterviewItem 
                 key={item.id} 
                 status={item.status}
                 onClick={() => handleItemClick(item.id)}
+                index={itemIndex + (topicIndex * topic.items.length)}
               >
                 <span className="status-dot"></span>
                 <span className="title">{item.title}</span>

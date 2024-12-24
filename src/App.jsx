@@ -2,6 +2,7 @@ import React from 'react'
 import { HashRouter } from 'react-router-dom'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import AppHeader from './components/AppHeader'
+import ScrollToTop from './components/ScrollToTop'
 import RouterConfig from './router/routes'
 import { AppWrapper } from './style'
 import GlobalStyle from './globalStyle'
@@ -14,7 +15,8 @@ const ThemedApp = () => {
     <StyledThemeProvider theme={theme}>
       <GlobalStyle />
       <AppWrapper>
-        <AppHeader/>
+        <AppHeader />
+        <ScrollToTop />
         <RouterConfig />
       </AppWrapper>
     </StyledThemeProvider>

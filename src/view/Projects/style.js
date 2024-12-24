@@ -53,13 +53,27 @@ export const ProjectCard = styled.div`
   background: ${props => props.theme.background.secondary};
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
   cursor: pointer;
-  border: 1px solid ${props => props.theme.text.secondary}20;
-  
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: ${props => props.index * 0.2}s;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   .project-image {
@@ -84,40 +98,14 @@ export const ProjectCard = styled.div`
 
     h3 {
       color: ${props => props.theme.text.primary};
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       font-size: 1.3rem;
     }
 
     p {
       color: ${props => props.theme.text.secondary};
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       line-height: 1.6;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 1rem;
-
-      a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: ${props => props.theme.primary};
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: ${props => props.theme.hover};
-        }
-      }
     }
   }
 `

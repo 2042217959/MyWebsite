@@ -36,7 +36,7 @@ const Projects = () => {
       github: "https://github.com/yourusername/project2",
       preview: "https://your-project-url.com"
     },
-    // 可以添加更多项目...
+    // 可以��加更多项目...
   ]
 
   const getTechIcon = (tech) => {
@@ -66,10 +66,11 @@ const Projects = () => {
       </ProjectHeader>
       
       <ProjectGrid>
-        {projects.map(project => (
+        {projects.map((project, index) => (
           <ProjectCard 
             key={project.id}
             onClick={() => handleProjectClick(project.id)}
+            index={index}
           >
             <div className="project-image">
               <img src={project.image} alt={project.title} />

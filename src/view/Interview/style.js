@@ -11,17 +11,31 @@ export const InterviewWrapper = styled.div`
     color: ${props => props.theme.text.primary};
     font-size: 2.5rem;
     position: relative;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
     
     &:after {
       content: '';
       position: absolute;
       bottom: -10px;
       left: 0;
-      transform: none;
       width: 60px;
       height: 3px;
       background: ${props => props.theme.primary};
       border-radius: 2px;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 `
@@ -32,6 +46,10 @@ export const CategorySection = styled.section`
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: ${props => props.index * 0.2}s;
 
   h2 {
     color: ${props => props.theme.text.primary};
@@ -58,6 +76,14 @@ export const InterviewList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const InterviewItem = styled.div`
@@ -67,7 +93,12 @@ export const InterviewItem = styled.div`
   background: ${props => props.theme.background.primary};
   border-radius: 8px;
   transition: all 0.3s ease;
-  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: ${props => props.index * 0.1}s;
+  cursor: pointer;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

@@ -52,7 +52,7 @@ const Home = () => {
         <h2>技能专长</h2>
         <ul>
           {skills.map((skill, index) => (
-            <li key={index}>
+            <li key={index} style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
               <span className="icon">{skill.icon}</span>
               <span className="text">{skill.name}</span>
             </li>

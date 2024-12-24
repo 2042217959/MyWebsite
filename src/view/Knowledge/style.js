@@ -28,6 +28,21 @@ export const KnowledgeWrapper = styled.div`
 
 export const CategorySection = styled.section`
   margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: ${props => props.index * 0.2}s;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   h2 {
     color: ${props => props.theme.text.primary};
@@ -68,13 +83,16 @@ export const KnowledgeCard = styled.div`
   background: ${props => props.theme.background.secondary};
   border-radius: 12px;
   padding: 1.5rem;
+  cursor: pointer;
   transition: all 0.3s ease;
-  border: 1px solid ${props => props.theme.text.secondary}20;
-  height: 100%;
-  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: ${props => props.index * 0.1}s;
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   h3 {
@@ -93,7 +111,6 @@ export const KnowledgeCard = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
     
     .date {
       color: ${props => props.theme.text.secondary};
@@ -101,15 +118,15 @@ export const KnowledgeCard = styled.div`
     }
 
     .read-more {
+      color: ${props => props.theme.primary};
       background: none;
       border: none;
-      color: ${props => props.theme.primary};
       cursor: pointer;
       font-weight: 500;
-      transition: all 0.3s ease;
       padding: 0.5rem 1rem;
-      border-radius: 6px;
-      
+      border-radius: 20px;
+      transition: all 0.3s ease;
+
       &:hover {
         background: ${props => props.theme.primary}20;
       }

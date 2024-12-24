@@ -3,90 +3,211 @@ import styled from 'styled-components'
 export const AboutWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 2rem;
 
   h1 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #333;
+    text-align: left;
+    margin-bottom: 3rem;
+    color: ${props => props.theme.text.primary};
     font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: ${props => props.theme.primary};
+      border-radius: 2px;
+    }
   }
 
-  .profile-section {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-bottom: 40px;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`
+
+export const ProfileSection = styled.div`
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.2s;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
   }
 
   .profile-image {
     width: 300px;
     height: 300px;
-    object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   .profile-content {
     flex: 1;
-  }
 
-  .section-title {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 5px;
-    display: inline-block;
-  }
+    h2 {
+      color: ${props => props.theme.text.primary};
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      position: relative;
+      padding-left: 1rem;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background: ${props => props.theme.primary};
+        border-radius: 2px;
+      }
+    }
 
-  p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 15px;
+    p {
+      color: ${props => props.theme.text.secondary};
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
   }
+`
 
-  .skills-section {
-    margin-top: 30px;
+export const SkillsSection = styled.div`
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.4s;
+
+  h2 {
+    color: ${props => props.theme.text.primary};
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    position: relative;
+    padding-left: 1rem;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 24px;
+      background: ${props => props.theme.primary};
+      border-radius: 2px;
+    }
   }
 
   .skills-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 1rem;
+  }
+`
+
+export const SkillTag = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: ${props => props.theme.background.secondary};
+  color: ${props => props.theme.text.primary};
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
-  .skill-tag {
-    background-color: #3498db;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+  svg {
+    color: ${props => props.theme.primary};
+    font-size: 1.2rem;
   }
+`
 
-  .contact-info {
-    margin-top: 30px;
-    text-align: center;
+export const ContactInfo = styled.div`
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: 0.6s;
+
+  h2 {
+    color: ${props => props.theme.text.primary};
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    position: relative;
+    padding-left: 1rem;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 24px;
+      background: ${props => props.theme.primary};
+      border-radius: 2px;
+    }
   }
 
   .social-links {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
+    gap: 1rem;
   }
 
   .social-link {
-    color: #3498db;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: ${props => props.theme.background.secondary};
+    color: ${props => props.theme.text.primary};
     text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    
     &:hover {
-      text-decoration: underline;
+      background: ${props => props.theme.primary}20;
+      color: ${props => props.theme.primary};
+      transform: translateY(-3px);
+    }
+
+    svg {
+      font-size: 1.2rem;
     }
   }
 `

@@ -32,14 +32,15 @@ const Knowledge = () => {
   return (
     <KnowledgeWrapper>
       <h1>知识库</h1>
-      {categories.map(category => (
-        <CategorySection key={category.id}>
+      {categories.map((category, categoryIndex) => (
+        <CategorySection key={category.id} index={categoryIndex}>
           <h2>{category.title}</h2>
           <KnowledgeGrid>
-            {category.items.map(item => (
+            {category.items.map((item, itemIndex) => (
               <KnowledgeCard 
                 key={item.id}
                 onClick={() => handleCardClick(item.id)}
+                index={itemIndex + (categoryIndex * category.items.length)}
               >
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>

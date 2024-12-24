@@ -2,13 +2,13 @@ import styled from "styled-components"
 
 export const AppHeaderWrapper = styled.div`
   background-color: ${props => props.theme.background.primary};
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  padding: 1.2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid ${props => props.theme.text.secondary}20;
+  border-bottom: 2px solid ${props => props.theme.primary}20;
   transition: all 0.3s ease;
 `
 
@@ -19,22 +19,29 @@ export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `
 
 export const Logo = styled.div`
   font-size: 1.8rem;
   font-weight: bold;
-  min-width: 200px;
+  font-family: 'Comic Sans MS', 'Pacifico', sans-serif;
   
   a {
     text-decoration: none;
     color: ${props => props.theme.primary};
     transition: all 0.3s ease;
-    text-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+    text-shadow: 2px 2px 4px ${props => props.theme.primary}40;
     
     &:hover {
       color: ${props => props.theme.hover};
-      text-shadow: 0 0 25px rgba(108, 99, 255, 0.4);
+      transform: scale(1.05);
+      display: inline-block;
     }
 
     .typed-cursor {
@@ -49,11 +56,21 @@ export const Logo = styled.div`
     50% { opacity: 0; }
     100% { opacity: 1; }
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `
 
 export const Nav = styled.nav`
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `
 
 export const NavItem = styled.div`
@@ -61,28 +78,32 @@ export const NavItem = styled.div`
     text-decoration: none;
     color: ${props => props.theme.text.secondary};
     font-weight: 500;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     transition: all 0.3s ease;
     position: relative;
     font-size: 1.1rem;
-    letter-spacing: 0.5px;
+    border-radius: 20px;
     
     &:hover {
-      color: ${props => props.theme.text.primary};
+      color: ${props => props.theme.primary};
+      background: ${props => props.theme.primary}10;
     }
     
     &.active {
       color: ${props => props.theme.primary};
+      background: ${props => props.theme.primary}15;
       
       &:after {
         content: '';
         position: absolute;
-        bottom: -4px;
-        left: 0;
-        width: 100%;
-        height: 2px;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 3px;
         background: ${props => props.theme.primary};
-        box-shadow: 0 0 10px ${props => props.theme.primary};
+        border-radius: 10px;
+        box-shadow: 0 0 10px ${props => props.theme.primary}40;
         animation: slideIn 0.3s ease forwards;
       }
     }
@@ -90,12 +111,19 @@ export const NavItem = styled.div`
 
   @keyframes slideIn {
     from {
-      transform: scaleX(0);
+      width: 0;
       opacity: 0;
     }
     to {
-      transform: scaleX(1);
+      width: 30px;
       opacity: 1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    a {
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
     }
   }
 `
@@ -104,4 +132,8 @@ export const RightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `
