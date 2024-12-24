@@ -2,7 +2,7 @@
   "name": "my-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://2042217959.github.io/MyWebsite",
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "antd": "^5.22.5",
