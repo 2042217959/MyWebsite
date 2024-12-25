@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { 
   AboutWrapper, 
   ProfileSection, 
   SkillsSection, 
   SkillTag, 
-  ContactInfo 
+  ContactInfo,
+  CopyButton,
+  InfoItem
 } from './style'
 import { 
   FaReact, 
@@ -14,17 +16,43 @@ import {
   FaNodeJs, 
   FaGit,
   FaGithub,
-  FaEnvelope
+  FaEnvelope,
+  FaPhone,
+  FaCopy,
+  FaCheck,
+  FaUser,
+  FaGraduationCap,
+  FaCode
 } from 'react-icons/fa'
 import { 
   SiTypescript, 
   SiWebpack, 
   SiRedux, 
-  SiStyledcomponents 
+  SiStyledcomponents,
+  SiJuejin
 } from 'react-icons/si'
 import photo from '../../assets/photo.jpg'
 
 const About = () => {
+  const [copiedItems, setCopiedItems] = useState({
+    phone: false,
+    email: false
+  })
+  const phoneNumber = "19868729624"
+  const email = "2042217959@qq.com"
+
+  const handleCopy = async (text, type) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopiedItems(prev => ({ ...prev, [type]: true }))
+      setTimeout(() => {
+        setCopiedItems(prev => ({ ...prev, [type]: false }))
+      }, 2000)
+    } catch (err) {
+      console.error('复制失败:', err)
+    }
+  }
+
   const skills = [
     { name: 'React', icon: <FaReact /> },
     { name: 'JavaScript', icon: <FaJs /> },
@@ -46,11 +74,26 @@ const About = () => {
         <img src={photo} alt="个人照片" className="profile-image" />
         <div className="profile-content">
           <h2>个人简介</h2>
+          <div className="info-list">
+            <InfoItem>
+              <FaUser className="icon" />
+              <span>姓名：王梓绵</span>
+            </InfoItem>
+            <InfoItem>
+              <FaGraduationCap className="icon" />
+              <span>学校：广东工业大学</span>
+            </InfoItem>
+            <InfoItem>
+              <FaGraduationCap className="icon" />
+              <span>专业：软件工程 2023级</span>
+            </InfoItem>
+            <InfoItem>
+              <FaCode className="icon" />
+              <span>方向：前端开发</span>
+            </InfoItem>
+          </div>
           <p>
-            我叫王梓绵，来自广东揭阳。
-          </p>
-          <p>
-            在我的职业生涯中，我致力于不断学习和提升自己。我相信技术不仅仅是工具，
+            技术不仅仅是工具，
             更是实现梦想和解决问题的钥匙。
           </p>
         </div>
@@ -74,9 +117,27 @@ const About = () => {
           <a href="https://github.com/2042217959" className="social-link" target="_blank" rel="noopener noreferrer">
             <FaGithub /> GitHub
           </a>
-          <a href="mailto:2042217959@qq.com" className="social-link">
-            <FaEnvelope /> Email
+          <a href="https://juejin.cn/user/1660740376482971" className="social-link" target="_blank" rel="noopener noreferrer">
+            <SiJuejin /> 掘金
           </a>
+          <div className="social-link">
+            <FaEnvelope /> {email}
+            <CopyButton 
+              onClick={() => handleCopy(email, 'email')}
+              title={copiedItems.email ? "已复制!" : "点击复制"}
+            >
+              {copiedItems.email ? <FaCheck /> : <FaCopy />}
+            </CopyButton>
+          </div>
+          <div className="social-link">
+            <FaPhone /> {phoneNumber}
+            <CopyButton 
+              onClick={() => handleCopy(phoneNumber, 'phone')}
+              title={copiedItems.phone ? "已复制!" : "点击复制"}
+            >
+              {copiedItems.phone ? <FaCheck /> : <FaCopy />}
+            </CopyButton>
+          </div>
         </div>
       </ContactInfo>
     </AboutWrapper>
