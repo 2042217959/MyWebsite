@@ -1,5 +1,4 @@
 import React from 'react'
-import { ReactTyped } from 'react-typed'
 import { HomeWrapper, Hero, About, Skills } from './style'
 import { 
   FaHtml5, 
@@ -21,26 +20,8 @@ const Home = () => {
   return (
     <HomeWrapper>
       <Hero>
-        <h1>
-          <ReactTyped
-            strings={['欢迎来到我的前端日记~']}
-            typeSpeed={100}
-            startDelay={600}
-            showCursor
-            cursorChar="|"
-            style={{ display: 'inline-block' }}
-          />
-        </h1>
-        <p>
-          <ReactTyped
-            strings={['共同学习，一起进步']}
-            typeSpeed={80}
-            startDelay={2000}
-            showCursor
-            cursorChar="|"
-            style={{ display: 'inline-block' }}
-          />
-        </p>
+        <h1>魔芋小狗的前端日记</h1>
+        <p>记录学习历程，分享开发经验</p>
       </Hero>
 
       <About>
@@ -52,7 +33,7 @@ const Home = () => {
         <h2>技能专长</h2>
         <ul>
           {skills.map((skill, index) => (
-            <li key={index} style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
+            <li key={index}>
               <span className="icon">{skill.icon}</span>
               <span className="text">{skill.name}</span>
             </li>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Welcome from "../view/Welcome"
 import Home from "../view/Home"
 import About from "../view/About"
 import Projects from "../view/Projects"
@@ -10,7 +11,7 @@ import KnowledgeDetail from "../view/Knowledge/detail"
 const RouterConfig = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Welcome />} />
       <Route path="/home" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
