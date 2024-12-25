@@ -1,13 +1,10 @@
 import React, { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { AppHeaderWrapper, HeaderContent, Logo, Nav, NavItem, RightSection } from './style'
+import { AppHeaderWrapper, HeaderContent, Logo, RightSection, Nav, NavItem } from './style'
 import ThemeToggle from '../ThemeToggle'
-import { useTheme } from '../../context/ThemeContext'
 
 const AppHeader = memo(() => {
-  const { theme } = useTheme()
-
   // 导航项目的动画配置
   const navItemVariants = {
     hover: {
@@ -47,7 +44,7 @@ const AppHeader = memo(() => {
   }
 
   return (
-    <AppHeaderWrapper theme={theme}>
+    <AppHeaderWrapper>
       <HeaderContent>
         <motion.div
           variants={logoVariants}
@@ -70,8 +67,7 @@ const AppHeader = memo(() => {
               { to: "/home", text: "首页" },
               { to: "/about", text: "关于我" },
               { to: "/projects", text: "项目" },
-              { to: "/knowledge", text: "知识库" },
-              { to: "/interview", text: "面试准备" }
+              { to: "/knowledge", text: "知识库" }
             ].map((item) => (
               <NavItem
                 key={item.to}

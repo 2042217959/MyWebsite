@@ -1,11 +1,11 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Home from "../view/Home"
-import About from "../view/About"
-import Projects from "../view/Projects"
-import ProjectDetail from "../view/Projects/detail"
-import Knowledge from "../view/Knowledge"
-import KnowledgeDetail from "../view/Knowledge/detail"
+import Home from '../view/Home'
+import About from '../view/About'
+import Projects from '../view/Projects'
+import ProjectDetail from '../view/Projects/detail'
+import Knowledge from '../view/Knowledge'
+import KnowledgeDetail from '../view/Knowledge/detail'
 
 const RouterConfig = () => {
   return (
@@ -21,4 +21,4 @@ const RouterConfig = () => {
   )
 }
 
-export default RouterConfig
+export default RouterConfig 

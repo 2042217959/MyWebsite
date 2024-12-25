@@ -1,25 +1,24 @@
 import styled from "styled-components"
 
-export const AppHeaderWrapper = styled.div`
-  background-color: ${props => props.theme.background.primary};
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+export const AppHeaderWrapper = styled.header`
+  background: ${props => props.theme.background.primary};
+  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  border-bottom: 2px solid ${props => props.theme.primary}20;
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `
 
 export const HeaderContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  position: relative;
+  align-items: flex-start;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -28,37 +27,32 @@ export const HeaderContent = styled.div`
 `
 
 export const Logo = styled.div`
-  font-size: 1.8rem;
-  font-weight: bold;
-  font-family: 'Comic Sans MS', 'Pacifico', sans-serif;
-  
   a {
+    color: ${props => props.theme.text.primary};
     text-decoration: none;
-    color: ${props => props.theme.primary};
-    transition: all 0.3s ease;
-    text-shadow: 2px 2px 4px ${props => props.theme.primary}40;
-    
-    &:hover {
-      color: ${props => props.theme.hover};
-      transform: scale(1.05);
-      display: inline-block;
-    }
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(120deg, #1890ff, #722ed1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 
-    .typed-cursor {
-      color: ${props => props.theme.primary};
-      opacity: 1;
-      animation: blink 1s infinite;
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
     }
   }
+`
 
-  @keyframes blink {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-  }
+export const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
   }
 `
 
@@ -67,9 +61,9 @@ export const Nav = styled.nav`
   gap: 2rem;
 
   @media (max-width: 768px) {
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 0.5rem;
     justify-content: center;
+    flex: 1;
   }
 `
 
@@ -83,6 +77,7 @@ export const NavItem = styled.div`
     position: relative;
     font-size: 1.1rem;
     border-radius: 20px;
+    white-space: nowrap;
     
     &:hover {
       color: ${props => props.theme.primary};
@@ -122,18 +117,8 @@ export const NavItem = styled.div`
 
   @media (max-width: 768px) {
     a {
-      font-size: 1rem;
-      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.6rem;
     }
-  }
-`
-
-export const RightSection = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
-  @media (max-width: 768px) {
-    gap: 1rem;
   }
 `
