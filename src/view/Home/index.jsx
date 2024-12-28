@@ -9,7 +9,7 @@ import {
   FaReact, 
   FaNodeJs 
 } from 'react-icons/fa'
-import { SiWebpack } from 'react-icons/si'
+import { SiWebpack,SiAntdesign, SiVite,SiWechat,SiGit,SiStyledcomponents } from 'react-icons/si'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -19,7 +19,12 @@ const Home = () => {
     { icon: <FaJs />, name: 'JavaScript' },
     { icon: <FaReact />, name: 'React' },
     { icon: <SiWebpack />, name: 'webpack' },
-    { icon: <FaNodeJs />, name: 'node.js' }
+    { icon: <FaNodeJs />, name: 'node.js' },
+    { icon: <SiAntdesign />, name: 'Ant Design' },
+    { icon: <SiVite />, name: 'Vite' },
+    { icon: <SiWechat />, name: '微信小程序Taro' },
+    { icon: <SiGit />, name: 'git' },
+    { icon: <SiStyledcomponents />, name: 'Styled Components' },
   ]
 
   return (

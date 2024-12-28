@@ -135,9 +135,108 @@ export const KnowledgeCard = styled.div`
 `
 
 export const KnowledgeDetail = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  padding: 2rem 3rem;
+  background: ${props => props.theme.background.primary};
+
+  .markdown-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: ${props => props.theme.text.primary};
+    max-width: 900px;
+    margin: 0 auto;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: ${props => props.theme.text.primary};
+      margin: 1.5em 0 0.8em;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.8em; }
+    h3 { 
+      font-size: 1.5em;
+      margin-top: 2em;
+    }
+
+    p {
+      margin: 1em 0;
+      color: ${props => props.theme.text.secondary};
+    }
+
+    ul, ol {
+      padding-left: 1.5em;
+      margin: 1em 0;
+      
+      li {
+        margin: 0.5em 0;
+        color: ${props => props.theme.text.secondary};
+        position: relative;
+        
+        &::marker {
+          color: ${props => props.theme.primary};
+        }
+      }
+    }
+
+    code {
+      background: ${props => props.theme.background.secondary};
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+      font-family: 'Fira Code', monospace;
+    }
+
+    pre {
+      background: ${props => props.theme.background.secondary};
+      padding: 1em;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1em 0;
+
+      code {
+        background: none;
+        padding: 0;
+      }
+    }
+
+    blockquote {
+      border-left: 4px solid ${props => props.theme.primary};
+      margin: 1em 0;
+      padding: 0.5em 1em;
+      background: ${props => props.theme.background.secondary};
+      color: ${props => props.theme.text.secondary};
+      border-radius: 4px;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 1em 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+
+      th, td {
+        border: 1px solid ${props => props.theme.border};
+        padding: 0.5em 1em;
+      }
+
+      th {
+        background: ${props => props.theme.background.secondary};
+        font-weight: 600;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `
 
 export const DetailContent = styled.div`
@@ -148,53 +247,22 @@ export const DetailContent = styled.div`
 `
 
 export const DetailHeader = styled.div`
-  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .category {
     color: ${props => props.theme.primary};
     font-weight: 500;
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    color: ${props => props.theme.text.primary};
-    margin-bottom: 1.5rem;
-  }
-
-  .meta {
+    font-size: 1.1rem;
     display: flex;
-    gap: 2rem;
-    color: ${props => props.theme.text.secondary};
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-
-    span {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    align-items: center;
   }
 
   .tags {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-
-    .tag {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: ${props => props.theme.background.primary};
-      color: ${props => props.theme.text.secondary};
-      border-radius: 20px;
-      font-size: 0.9rem;
-
-      svg {
-        color: ${props => props.theme.primary};
-      }
-    }
+    margin-top: 0.5rem;
   }
 `
 
@@ -259,7 +327,7 @@ export const ContentSection = styled.div`
 `
 
 export const BackButton = styled.button`
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
@@ -271,6 +339,7 @@ export const BackButton = styled.button`
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  margin-bottom: 1rem;
 
   svg {
     font-size: 1.2rem;

@@ -25,11 +25,14 @@ import {
   FaCode
 } from 'react-icons/fa'
 import { 
-  SiTypescript, 
   SiWebpack, 
   SiRedux, 
   SiStyledcomponents,
-  SiJuejin
+  SiJuejin,
+  SiAntdesign,
+  SiVite,
+  SiWechat,
+  SiGit
 } from 'react-icons/si'
 import photo from '../../assets/photo.jpg'
 
@@ -59,11 +62,13 @@ const About = () => {
     { name: 'HTML5', icon: <FaHtml5 /> },
     { name: 'CSS3', icon: <FaCss3 /> },
     { name: 'Node.js', icon: <FaNodeJs /> },
-    { name: 'TypeScript', icon: <SiTypescript /> },
     { name: 'Git', icon: <FaGit /> },
     { name: 'Webpack', icon: <SiWebpack /> },
     { name: 'Redux', icon: <SiRedux /> },
-    { name: 'Styled Components', icon: <SiStyledcomponents /> }
+    { name: 'Styled Components', icon: <SiStyledcomponents /> },
+    { name: 'Ant Design', icon: <SiAntdesign /> },
+    { name: 'Vite', icon: <SiVite /> },
+    { name: '微信小程序Taro', icon: <SiWechat /> },
   ]
 
   return (

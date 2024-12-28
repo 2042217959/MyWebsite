@@ -1,6 +1,7 @@
 import myWebsitePicture from '../assets/mywebsitepicture.png'
 import myWebsitePicture2 from '../assets/mywebsitepicture2.png'
 import myWebsitePicture3 from '../assets/mywebsitepicture3.png'
+import myWebsitePicture4 from '../assets/mywebsitepicture4.png'
 import wyymusic from '../assets/wyymusic.png'
 import wyymusic2 from '../assets/wyymusic2.png'
 
@@ -21,6 +22,10 @@ export const projects = [
       {
         url: myWebsitePicture3,
         title: "关于我"
+      },
+      {
+        url: myWebsitePicture4,
+        title: "我的项目"
       }
     ],
     tags: ["React", "framer motion","github pages","git"],
@@ -53,7 +58,7 @@ export const projects = [
   {
     id: 2,
     title: "音乐播放器(仿网易云）",
-    description: "一个支持在线播放和歌单管理的音乐播放器",
+    description: "仿造网易云音乐做的一个音乐播放器（当时拿来练手的项目，现在后端很多数据都过期了...）",
     images: [
       {
         url: wyymusic,
@@ -64,22 +69,21 @@ export const projects = [
         title: "首页"
       }
     ],
-    tags: ["React", "Redux", "Web Audio API"],
+    tags: ["React", "Redux", "Web Audio API","Ant Design"],
     features: [
       "音乐播放控制",
-      "歌单管理功能",
-      "音频可视化效果",
-      "播放历史记录"
+      "用户系统",
+      "七天免登录功能",
     ],
     challenges: [
       "如何处理音频流",
-      "如何实现音频可视化",
-      "如何管理复杂的播放状态"
+      "多组件间的状态共享和同步",
+      "组件重复渲染问题"
     ],
     solutions: [
       "使用 Web Audio API 处理音频",
-      "使用 Canvas 实现可视化效果",
-      "使用 Redux 管理状态"
+      "使用 Redux 管理状态",
+      "使用React.memo进行组件缓存"
     ],
     github: "https://gitee.com/lyhm130/wymusic",
     isDeployed: false,
@@ -87,7 +91,7 @@ export const projects = [
       "React",
       "Redux",
       "Web Audio API",
-      "Canvas API"
+      "Ant Design"
     ]
   }
   // 可以继续添加更多项目...
