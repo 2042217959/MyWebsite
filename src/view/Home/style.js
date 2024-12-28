@@ -35,11 +35,19 @@ export const Hero = styled.section`
     text-shadow: 0px 2px 8px rgba(24, 144, 255, 0.1);
     font-family: 'Comic Sans MS', 'Pacifico', sans-serif;
     font-weight: bold;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
   
   p {
     font-size: 1.2rem;
     color: ${props => props.theme.text.secondary};
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 `
 
