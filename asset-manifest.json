@@ -1,14 +1,20 @@
 {
   "files": {
     "main.css": "/MyWebsite/static/css/main.e6c13ad2.css",
-    "main.js": "/MyWebsite/static/js/main.71052d55.js",
+    "main.js": "/MyWebsite/static/js/main.ce11db04.js",
+    "static/media/wyymusic2.png": "/MyWebsite/static/media/wyymusic2.bd8b4b3197eb80cf777d.png",
     "static/media/photo.jpg": "/MyWebsite/static/media/photo.5523346e5f0317027134.jpg",
+    "static/media/wyymusic.png": "/MyWebsite/static/media/wyymusic.55c86a581d5edd01cd6b.png",
+    "static/media/mywebsitepicture3.png": "/MyWebsite/static/media/mywebsitepicture3.d8592e7546df4381c0a1.png",
+    "static/media/mywebsitepicture4.png": "/MyWebsite/static/media/mywebsitepicture4.7eed1a5874ae09fdbcda.png",
+    "static/media/mywebsitepicture2.png": "/MyWebsite/static/media/mywebsitepicture2.c8e3a5c104acf62966da.png",
+    "static/media/mywebsitepicture.png": "/MyWebsite/static/media/mywebsitepicture.8c107deb5795d26b20b4.png",
     "index.html": "/MyWebsite/index.html",
     "main.e6c13ad2.css.map": "/MyWebsite/static/css/main.e6c13ad2.css.map",
-    "main.71052d55.js.map": "/MyWebsite/static/js/main.71052d55.js.map"
+    "main.ce11db04.js.map": "/MyWebsite/static/js/main.ce11db04.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.71052d55.js"
+    "static/js/main.ce11db04.js"
   ]
 }
