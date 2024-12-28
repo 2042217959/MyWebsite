@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Layout, Menu, Typography, Tag, Space, Card } from 'antd'
+import { Layout, Menu, Typography, Tag, Space, Card, theme } from 'antd'
 import { FaArrowLeft, FaClock, FaTag, FaBook } from 'react-icons/fa'
 import { knowledgeData } from '../../data/knowledge'
 import ReactMarkdown from 'react-markdown'
-import { KnowledgeDetail, BackButton, DetailHeader } from './style'
+import { KnowledgeDetail, BackButton, DetailHeader, StyledCard } from './style'
 
-const { Content, Sider } = Layout
 const { Title, Text } = Typography
 
 const KnowledgeDetailPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [selectedKey, setSelectedKey] = useState('introduction')
+  const { token } = theme.useToken()
 
   // 获取对应ID的知识点数据
   const knowledgeDetail = knowledgeData[id]
@@ -24,10 +24,10 @@ const KnowledgeDetailPage = () => {
         <BackButton onClick={() => navigate('/knowledge')}>
           <FaArrowLeft /> 返回知识库
         </BackButton>
-        <Card>
+        <StyledCard>
           <Title level={1}>未找到知识点</Title>
           <Text>抱歉，未找到ID为 {id} 的知识点内容</Text>
-        </Card>
+        </StyledCard>
       </KnowledgeDetail>
     )
   }
@@ -52,7 +52,7 @@ const KnowledgeDetailPage = () => {
         <FaArrowLeft /> 返回知识库
       </BackButton>
       
-      <Card>
+      <StyledCard>
         <DetailHeader>
           <Space direction="vertical" size={16} style={{ width: '100%' }}>
             <div className="category">
@@ -76,7 +76,13 @@ const KnowledgeDetailPage = () => {
                   key={index} 
                   icon={<FaTag />}
                   color="processing"
-                  style={{ padding: '4px 12px', borderRadius: '16px' }}
+                  style={{ 
+                    padding: '4px 12px', 
+                    borderRadius: '16px',
+                    background: token.colorPrimaryBg,
+                    border: `1px solid ${token.colorPrimaryBorder}`,
+                    color: token.colorPrimary
+                  }}
                 >
                   {tag}
                 </Tag>
@@ -84,58 +90,49 @@ const KnowledgeDetailPage = () => {
             </div>
           </Space>
         </DetailHeader>
-      </Card>
+      </StyledCard>
 
-      <Layout 
-        style={{ 
-          background: 'transparent',
-          marginTop: '24px',
-          height: 'calc(100vh - 300px)'
-        }}
-      >
-        {knowledgeDetail.menuItems ? (
-          <Sider
-            width={280}
+      <div style={{ 
+        display: 'flex', 
+        gap: '24px',
+        marginTop: '24px'
+      }}>
+        {knowledgeDetail.menuItems && (
+          <StyledCard
             style={{
-              background: '#fff',
-              borderRadius: '8px',
-              marginRight: '24px',
-              overflow: 'auto'
+              width: '280px',
+              height: 'fit-content',
+              flexShrink: 0
             }}
           >
-            <div style={{ padding: '16px 0' }}>
-              <Title level={4} style={{ padding: '0 24px', margin: '0 0 16px 0' }}>
-                目录
-              </Title>
-              <Menu
-                mode="inline"
-                selectedKeys={[selectedKey]}
-                style={{ 
-                  height: '100%',
-                  border: 'none'
-                }}
-                items={knowledgeDetail.menuItems.map(item => ({
-                  key: item.key,
-                  label: item.label,
-                  onClick: () => handleMenuClick(item.key)
-                }))}
-              />
-            </div>
-          </Sider>
-        ) : null}
-        <Content
+            <Title level={4} style={{ margin: '0 0 16px 0' }}>
+              目录
+            </Title>
+            <Menu
+              mode="inline"
+              selectedKeys={[selectedKey]}
+              style={{ 
+                border: 'none',
+                background: 'transparent'
+              }}
+              items={knowledgeDetail.menuItems.map(item => ({
+                key: item.key,
+                label: item.label,
+                onClick: () => handleMenuClick(item.key)
+              }))}
+            />
+          </StyledCard>
+        )}
+        <StyledCard
           style={{
-            background: '#fff',
-            padding: '32px 40px',
-            borderRadius: '8px',
-            overflow: 'auto'
+            flex: 1
           }}
         >
           <div className="markdown-content">
             <ReactMarkdown>{currentContent}</ReactMarkdown>
           </div>
-        </Content>
-      </Layout>
+        </StyledCard>
+      </div>
     </KnowledgeDetail>
   )
 }

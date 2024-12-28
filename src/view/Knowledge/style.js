@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Card } from 'antd'
 
 export const KnowledgeWrapper = styled.div`
   max-width: 1200px;
@@ -143,14 +144,14 @@ export const KnowledgeDetail = styled.div`
   .markdown-content {
     font-size: 16px;
     line-height: 1.8;
-    color: ${props => props.theme.text.primary};
-    max-width: 900px;
+    color: ${props => props.theme.text.secondary};
+    max-width: 100%;
     margin: 0 auto;
 
     h1, h2, h3, h4, h5, h6 {
       color: ${props => props.theme.text.primary};
       margin: 1.5em 0 0.8em;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 1.4;
     }
 
@@ -164,6 +165,7 @@ export const KnowledgeDetail = styled.div`
     p {
       margin: 1em 0;
       color: ${props => props.theme.text.secondary};
+      letter-spacing: 0.2px;
     }
 
     ul, ol {
@@ -176,60 +178,90 @@ export const KnowledgeDetail = styled.div`
         position: relative;
         
         &::marker {
-          color: ${props => props.theme.primary};
+          color: ${props => props.theme.primary}cc;
         }
       }
     }
 
     code {
-      background: ${props => props.theme.background.secondary};
+      background: ${props => props.theme.background.primary}cc;
       padding: 0.2em 0.4em;
-      border-radius: 3px;
+      border-radius: 4px;
       font-size: 0.9em;
       font-family: 'Fira Code', monospace;
+      color: ${props => props.theme.primary};
+      border: 1px solid ${props => props.theme.border}20;
     }
 
     pre {
-      background: ${props => props.theme.background.secondary};
-      padding: 1em;
+      background: ${props => props.theme.background.primary}cc;
+      padding: 1.2em;
       border-radius: 8px;
       overflow-x: auto;
       margin: 1em 0;
+      border: 1px solid ${props => props.theme.border}20;
 
       code {
         background: none;
         padding: 0;
+        border: none;
+        color: ${props => props.theme.text.secondary};
       }
     }
 
     blockquote {
-      border-left: 4px solid ${props => props.theme.primary};
+      border-left: 4px solid ${props => props.theme.primary}80;
       margin: 1em 0;
-      padding: 0.5em 1em;
-      background: ${props => props.theme.background.secondary};
+      padding: 0.8em 1.2em;
+      background: ${props => props.theme.background.primary}80;
       color: ${props => props.theme.text.secondary};
       border-radius: 4px;
+      font-style: italic;
     }
 
     img {
       max-width: 100%;
       border-radius: 8px;
       margin: 1em 0;
+      border: 1px solid ${props => props.theme.border}20;
     }
 
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0;
       margin: 1em 0;
+      border: 1px solid ${props => props.theme.border}30;
+      border-radius: 8px;
+      overflow: hidden;
 
       th, td {
-        border: 1px solid ${props => props.theme.border};
-        padding: 0.5em 1em;
+        border: none;
+        border-bottom: 1px solid ${props => props.theme.border}30;
+        border-right: 1px solid ${props => props.theme.border}30;
+        padding: 0.8em 1em;
       }
 
       th {
-        background: ${props => props.theme.background.secondary};
-        font-weight: 600;
+        background: ${props => props.theme.background.primary}80;
+        font-weight: 500;
+        color: ${props => props.theme.text.primary};
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      td:last-child, th:last-child {
+        border-right: none;
+      }
+
+      tr:nth-child(even) {
+        background: ${props => props.theme.background.primary}40;
+      }
+
+      tr:hover {
+        background: ${props => props.theme.background.primary}60;
       }
     }
   }
@@ -251,11 +283,12 @@ export const DetailHeader = styled.div`
   margin: 0 auto;
 
   .category {
-    color: ${props => props.theme.primary};
+    color: ${props => props.theme.primary}dd;
     font-weight: 500;
     font-size: 1.1rem;
     display: flex;
     align-items: center;
+    opacity: 0.9;
   }
 
   .tags {
@@ -331,9 +364,9 @@ export const BackButton = styled.button`
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  border: none;
+  border: 1px solid ${props => props.theme.border}30;
   background: ${props => props.theme.background.secondary};
-  color: ${props => props.theme.text.primary};
+  color: ${props => props.theme.text.secondary};
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
@@ -346,8 +379,54 @@ export const BackButton = styled.button`
   }
 
   &:hover {
-    background: ${props => props.theme.primary}20;
+    background: ${props => props.theme.primary}15;
     color: ${props => props.theme.primary};
+    border-color: ${props => props.theme.primary}30;
     transform: translateX(-5px);
+  }
+`
+
+export const StyledCard = styled(Card)`
+  background: ${props => props.theme.background.secondary};
+  border: 1px solid ${props => props.theme.border}40;
+  box-shadow: 0 2px 8px ${props => props.theme.shadow}10;
+  backdrop-filter: blur(8px);
+
+  .ant-card-body {
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    border-color: ${props => props.theme.border}80;
+    box-shadow: 0 4px 12px ${props => props.theme.shadow}20;
+  }
+
+  .ant-menu {
+    color: ${props => props.theme.text.secondary};
+
+    .ant-menu-item {
+      border-radius: 6px;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: ${props => props.theme.primary};
+        background: ${props => props.theme.primary}15;
+      }
+
+      &.ant-menu-item-selected {
+        background: ${props => props.theme.primary}25;
+        color: ${props => props.theme.primary};
+        font-weight: 500;
+      }
+
+      &:active {
+        background: ${props => props.theme.primary}35;
+      }
+    }
+  }
+
+  .ant-typography {
+    color: ${props => props.theme.text.primary};
   }
 ` 
