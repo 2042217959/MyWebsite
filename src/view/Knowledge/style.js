@@ -183,7 +183,14 @@ export const KnowledgeDetail = styled.div`
 
   @media (max-width: 768px) {
     padding: 1rem;
-
+    .KnowledgeDetailBtns {
+      position: sticky;
+      top: 126px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: ${props => props.theme.background.primary};
+    }
     .markdown-content {
       padding: 0 1rem;
       
@@ -480,7 +487,6 @@ export const MenuButton = styled.button`
   font-size: 1.5rem;
   color: ${props => props.theme.text.primary};
   cursor: pointer;
-  z-index: 1000;
   padding: 8px;
   border-radius: 8px;
   transition: all 0.3s ease;

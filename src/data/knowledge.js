@@ -61,7 +61,6 @@ export const knowledgeData = {
       }
     ],
     updateTime: "2024-03-15",
-    readTime: "10 分钟",
     tags: ["React", "前端", "JavaScript"]
   },
   2: {
@@ -85,7 +84,7 @@ export const knowledgeData = {
           Vue.js 的组件系统允许我们构建大型应用，组件是可复用的 Vue 实例，带有名字的可复用组件。组件可以扩展 HTML 元素，封装可重用的代码。
 
           ### 指令系统
-          Vue.js 的指令系统提供了很多内置指令，如 v-if、v-for、v-model 等，同时也支持自定义指令。指令是带有 v- 前缀的特殊属性，用于在模板中执行特定的操作。
+          Vue.js 的指令系统提供了很多内置指令，如 v-if、v-for、v-model 等，同时也支持自定义指令。指令是带有 v- 前缀的特殊属性，用于���模板中执行特定的操作。
 
           ### 生命周期钩子
           Vue 组件实例在创建时经历一系列的初始化过程，在这个过程中会运行一些叫做生命周期钩子的函数，让我们有机会在特定阶段添加自己的代码。
@@ -136,7 +135,6 @@ export const knowledgeData = {
       }
     ],
     updateTime: "2024-03-16",
-    readTime: "12 分钟",
     tags: ["Vue", "前端", "JavaScript"]
   },
   3: {
@@ -225,7 +223,6 @@ export const knowledgeData = {
       }
     ],
     updateTime: "2024-03-17",
-    readTime: "15 分钟",
     tags: ["Node.js", "后端", "JavaScript"]
   }
 }; 
