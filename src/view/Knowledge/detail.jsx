@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Layout, Menu, Typography, Tag, Space, Card, theme } from 'antd'
-import { FaArrowLeft, FaClock, FaTag, FaBook } from 'react-icons/fa'
+import { FaArrowLeft, FaClock, FaTag, FaBook, FaBars, FaTimes } from 'react-icons/fa'
 import { knowledgeData } from '../../data/knowledge'
 import ReactMarkdown from 'react-markdown'
-import { KnowledgeDetail, BackButton, DetailHeader, StyledCard } from './style'
+import { KnowledgeDetail, BackButton, DetailHeader, StyledCard, MenuButton, CloseButton } from './style'
 
 const { Title, Text } = Typography
 
@@ -12,6 +12,7 @@ const KnowledgeDetailPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [selectedKey, setSelectedKey] = useState('introduction')
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
   const { token } = theme.useToken()
 
   // 获取对应ID的知识点数据
@@ -46,11 +47,22 @@ const KnowledgeDetailPage = () => {
 
   const currentContent = getContent()
 
+  const toggleSidebar = () => {
+    setIsSidebarVisible(!isSidebarVisible)
+  }
+
   return (
     <KnowledgeDetail>
-      <BackButton onClick={() => navigate('/knowledge')}>
-        <FaArrowLeft /> 返回知识库
-      </BackButton>
+<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <BackButton onClick={() => navigate('/knowledge')}>
+          <FaArrowLeft /> 返回知识库
+        </BackButton>
+        {knowledgeDetail.menuItems && (
+          <MenuButton onClick={toggleSidebar}>
+            <FaBars />
+          </MenuButton>
+        )}
+      </div>
       
       <StyledCard>
         <DetailHeader>
@@ -95,16 +107,29 @@ const KnowledgeDetailPage = () => {
       <div style={{ 
         display: 'flex', 
         gap: '24px',
-        marginTop: '24px'
+        marginTop: '24px',
+        position: 'relative'
       }}>
         {knowledgeDetail.menuItems && (
           <StyledCard
+            className="sidebar"
             style={{
               width: '280px',
               height: 'fit-content',
-              flexShrink: 0
+              flexShrink: 0,
+              visibility: isSidebarVisible ? 'visible' : 'hidden',
+              opacity: isSidebarVisible ? 1 : 0,
+              transform: isSidebarVisible ? 'translateX(0)' : 'translateX(-100%)',
+              transition: 'all 0.3s ease',
+              position: 'fixed',
+              top: '100px',
+              left: '24px',
+              zIndex: 1000
             }}
           >
+            <CloseButton onClick={toggleSidebar}>
+              <FaTimes />
+            </CloseButton>
             <Title level={4} style={{ margin: '0 0 16px 0' }}>
               目录
             </Title>
@@ -118,14 +143,20 @@ const KnowledgeDetailPage = () => {
               items={knowledgeDetail.menuItems.map(item => ({
                 key: item.key,
                 label: item.label,
-                onClick: () => handleMenuClick(item.key)
+                onClick: () => {
+                  handleMenuClick(item.key)
+                  if (window.innerWidth <= 768) {
+                    setIsSidebarVisible(false)
+                  }
+                }
               }))}
             />
           </StyledCard>
         )}
         <StyledCard
           style={{
-            flex: 1
+            flex: 1,
+            marginLeft: window.innerWidth > 768 && knowledgeDetail.menuItems ? '304px' : '0'
           }}
         >
           <div className="markdown-content">
