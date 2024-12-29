@@ -32,7 +32,7 @@ export const WelcomeContent = styled.div`
     letter-spacing: 1px;
 
     @media (max-width: 768px) {
-      font-size: 2.2rem;
+      font-size: 1.7rem;
     }
   }
   
