@@ -32,9 +32,45 @@ export const knowledgeData = {
     title: "Vue.js 开发技巧",
     category: "前端开发",
     description: "Vue.js 项目开发中的最佳实践和常用技巧",
-    // 示例：单个 markdown 文件
-    markdownPath: '/markdown/vue/basics.md',
+    menuItems: [
+      {
+        key: 'introduction',
+        label: 'Vue.js 简介',
+        markdownPath: '/markdown/vue/introduction.md'
+      },
+      {
+        key: 'core-features',
+        label: '核心特性',
+        markdownPath: '/markdown/vue/core-features.md'
+      },
+      {
+        key: 'composition-api',
+        label: 'Composition API',
+        markdownPath: '/markdown/vue/composition-api.md'
+      },
+      {
+        key: 'best-practices',
+        label: '最佳实践',
+        markdownPath: '/markdown/vue/best-practices.md'
+      }
+    ],
     updateTime: "2024-03-16",
     tags: ["Vue", "前端", "JavaScript"]
+  },
+  'git': {
+    title: "git使用",
+    category: "前端开发",
+    description: "git 项目开发中的最佳实践和常用技巧",
+    menuItems: [
+      {
+        key: 'introduction',
+        label: 'git.js 简介',
+        markdownPath: '/markdown/git/introduction.md'
+      }
+    ],
+    updateTime: "2024-03-16",
+    tags: ["git", "前端"]
   }
 } 
+// 当用户点击菜单项时，系统会根据 key 找到对应的 markdown 文件路径，然后加载并显示内容。
+// 而用户在界面上看到的是 label 指定的文本。
