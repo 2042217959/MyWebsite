@@ -11,7 +11,10 @@ const { Title, Text } = Typography
 const KnowledgeDetailPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [selectedKey, setSelectedKey] = useState('introduction')
+  const [selectedKey, setSelectedKey] = useState(() => {
+    const detail = knowledgeData[id]
+    return detail?.menuItems?.[0]?.key || 'introduction'
+  })
   const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth > 768)
   const [markdownContent, setMarkdownContent] = useState('')
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)

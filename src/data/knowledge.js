@@ -1,4 +1,18 @@
 export const knowledgeData = {
+  'css-basics': {
+    title: "css",
+    category: "前端开发",
+    description: "css学习",
+    menuItems: [
+      {
+        key: '布局',
+        label: '布局',
+        markdownPath: '/markdown/css/布局.md'
+      },
+    ],
+    updateTime: "2024-03-16",
+    tags: ["css", "前端"]
+  },
   'react-basics': {
     title: "React 基础知识",
     category: "前端开发",
