@@ -1,4 +1,4 @@
-import React, { useState, } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Menu, Typography } from 'antd'
 import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa'
@@ -12,10 +12,56 @@ const KnowledgeDetailPage = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [selectedKey, setSelectedKey] = useState('introduction')
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false)
+  const [isSidebarVisible, setIsSidebarVisible] = useState(window.innerWidth > 768)
+  const [markdownContent, setMarkdownContent] = useState('')
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
 
   // 获取对应ID的知识点数据
   const knowledgeDetail = knowledgeData[id]
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+      if (!mobile) {
+        setIsSidebarVisible(true)
+      } else {
+        setIsSidebarVisible(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // 加载markdown文件内容
+  const loadMarkdownContent = async (filePath) => {
+    try {
+      const response = await fetch(filePath)
+      const text = await response.text()
+      setMarkdownContent(text)
+    } catch (error) {
+      console.error('Error loading markdown file:', error)
+      setMarkdownContent('Error loading content')
+    }
+  }
+
+  useEffect(() => {
+    if (knowledgeDetail) {
+      if (knowledgeDetail.menuItems) {
+        const currentItem = knowledgeDetail.menuItems.find(item => item.key === selectedKey)
+        if (currentItem?.markdownPath) {
+          loadMarkdownContent(currentItem.markdownPath)
+        } else {
+          setMarkdownContent(currentItem?.content || '')
+        }
+      } else if (knowledgeDetail.markdownPath) {
+        loadMarkdownContent(knowledgeDetail.markdownPath)
+      } else {
+        setMarkdownContent(knowledgeDetail.content || '')
+      }
+    }
+  }, [knowledgeDetail, selectedKey])
 
   // 如果找不到对应的知识点，显示错误信息
   if (!knowledgeDetail) {
@@ -34,17 +80,10 @@ const KnowledgeDetailPage = () => {
 
   const handleMenuClick = (key) => {
     setSelectedKey(key)
-  }
-
-  // 获取内容：支持新旧两种格式
-  const getContent = () => {
-    if (knowledgeDetail.menuItems) {
-      return knowledgeDetail.menuItems.find(item => item.key === selectedKey)?.content || ''
+    if (isMobile) {
+      setIsSidebarVisible(false)
     }
-    return knowledgeDetail.content || ''
   }
-
-  const currentContent = getContent()
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible)
@@ -53,16 +92,16 @@ const KnowledgeDetailPage = () => {
   return (
     <KnowledgeDetail>
 <div className="KnowledgeDetailBtns" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
         <BackButton onClick={() => navigate('/knowledge')}>
           <FaArrowLeft /> 返回知识库
         </BackButton>
-        {knowledgeDetail.menuItems && (
+        {knowledgeDetail.menuItems && isMobile && (
           <MenuButton onClick={toggleSidebar}>
             <FaBars />
           </MenuButton>
         )}
       </div>
-      
 
       <div style={{ 
         display: 'flex', 
@@ -81,15 +120,17 @@ const KnowledgeDetailPage = () => {
               opacity: isSidebarVisible ? 1 : 0,
               transform: isSidebarVisible ? 'translateX(0)' : 'translateX(-100%)',
               transition: 'all 0.3s ease',
-              position: 'fixed',
-              top: '100px',
-              left: '24px',
-              zIndex: 1000
+              position: isMobile ? 'fixed' : 'sticky',
+              top: isMobile ? '100px' : '100px',
+              left: isMobile ? '24px' : 'auto',
+              zIndex: isMobile ? 1000 : 1
             }}
           >
-            <CloseButton onClick={toggleSidebar}>
-              <FaTimes />
-            </CloseButton>
+            {isMobile && (
+              <CloseButton onClick={toggleSidebar}>
+                <FaTimes />
+              </CloseButton>
+            )}
             <Title level={4} style={{ margin: '0 0 16px 0' }}>
               目录
             </Title>
@@ -103,12 +144,7 @@ const KnowledgeDetailPage = () => {
               items={knowledgeDetail.menuItems.map(item => ({
                 key: item.key,
                 label: item.label,
-                onClick: () => {
-                  handleMenuClick(item.key)
-                  if (window.innerWidth <= 768) {
-                    setIsSidebarVisible(false)
-                  }
-                }
+                onClick: () => handleMenuClick(item.key)
               }))}
             />
           </StyledCard>
@@ -116,11 +152,11 @@ const KnowledgeDetailPage = () => {
         <StyledCard
           style={{
             flex: 1,
-            marginLeft: window.innerWidth > 768 && knowledgeDetail.menuItems ? '304px' : '0'
+            marginLeft: !isMobile && knowledgeDetail.menuItems && isSidebarVisible ? '0px' : '0'
           }}
         >
           <div className="markdown-content">
-            <ReactMarkdown>{currentContent}</ReactMarkdown>
+            <ReactMarkdown>{markdownContent}</ReactMarkdown>
           </div>
         </StyledCard>
       </div>
