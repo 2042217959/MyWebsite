@@ -37,7 +37,11 @@ const KnowledgeDetailPage = () => {
   // 加载markdown文件内容
   const loadMarkdownContent = async (filePath) => {
     try {
-      const response = await fetch(filePath)
+      // 使用相对路径加载markdown文件
+      const response = await fetch(process.env.PUBLIC_URL + filePath)
+      if (!response.ok) {
+        throw new Error('Failed to load markdown file')
+      }
       const text = await response.text()
       setMarkdownContent(text)
     } catch (error) {
@@ -91,7 +95,7 @@ const KnowledgeDetailPage = () => {
 
   return (
     <KnowledgeDetail>
-<div className="KnowledgeDetailBtns" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="KnowledgeDetailBtns" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
         <BackButton onClick={() => navigate('/knowledge')}>
           <FaArrowLeft /> 返回知识库
@@ -103,8 +107,8 @@ const KnowledgeDetailPage = () => {
         )}
       </div>
 
-      <div style={{ 
-        display: 'flex', 
+      <div style={{
+        display: 'flex',
         gap: '24px',
         marginTop: '24px',
         position: 'relative'
@@ -137,7 +141,7 @@ const KnowledgeDetailPage = () => {
             <Menu
               mode="inline"
               selectedKeys={[selectedKey]}
-              style={{ 
+              style={{
                 border: 'none',
                 background: 'transparent'
               }}
