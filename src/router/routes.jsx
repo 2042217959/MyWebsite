@@ -8,6 +8,7 @@ import Article from '../view/Projects/article'
 import Knowledge from '../view/Knowledge'
 import KnowledgeDetail from '../view/Knowledge/detail'
 import Welcome from '../view/Welcome'
+import Articles from '../view/Articles'
 
 const AppRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/:id" element={<ProjectDetail />} />
+      <Route path="/articles" element={<Articles />} />
       <Route path="/articles/:id" element={<Article />} />
       <Route path="/knowledge" element={<Knowledge />} />
       <Route path="/knowledge/:id" element={<KnowledgeDetail />} />
