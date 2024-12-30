@@ -1,37 +1,55 @@
-import React from 'react'
-import { ArticlesWrapper, ArticleGrid, ArticleCard } from './style'
+import React, { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { 
+  ArticlesWrapper, 
+  ArticleList, 
+  ArticleItem, 
+  ArticleTitle, 
+  ArticleDescription, 
+  ArticleDate,
+  TagsContainer,
+  Tag,
+  ArticleFooter,
+  ReadMoreButton
+} from './style'
 import { articles } from '../../data/articles'
 
-const Articles = () => {
+const Articles = memo(() => {
   const navigate = useNavigate()
-
-  const handleArticleClick = (id) => {
-    navigate(`/articles/${id}`)
-  }
 
   return (
     <ArticlesWrapper>
-      <h1>文章列表</h1>
-      <ArticleGrid>
-        {articles.map((article) => (
-          <ArticleCard 
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        我的文章
+      </motion.h1>
+      <ArticleList>
+        {articles.map((article, index) => (
+          <ArticleItem
             key={article.id}
-            onClick={() => handleArticleClick(article.id)}
+            index={index}
+            onClick={() => navigate(`/articles/${article.id}`)}
           >
-            <h3>{article.title}</h3>
-            <div className="tags">
+            <ArticleTitle>{article.title}</ArticleTitle>
+            <TagsContainer>
               {article.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
+                <Tag key={index}>{tag}</Tag>
               ))}
-            </div>
-            <div className="date">发布时间: {article.date}</div>
-            <button className="read-more">阅读更多</button>
-          </ArticleCard>
+            </TagsContainer>
+            <ArticleDescription>{article.description}</ArticleDescription>
+            <ArticleFooter>
+              <ArticleDate>{article.date}</ArticleDate>
+              <ReadMoreButton>阅读更多</ReadMoreButton>
+            </ArticleFooter>
+          </ArticleItem>
         ))}
-      </ArticleGrid>
+      </ArticleList>
     </ArticlesWrapper>
   )
-}
+})
 
 export default Articles 

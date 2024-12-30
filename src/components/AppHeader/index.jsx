@@ -51,7 +51,9 @@ const AppHeader = memo(() => {
           initial="initial"
           animate="animate"
         >
-          <Logo to="/home">魔芋小狗</Logo>
+          <Logo>
+            <NavLink to="/home">魔芋小狗前端日记</NavLink>
+          </Logo>
         </motion.div>
 
         <RightSection>
@@ -61,46 +63,25 @@ const AppHeader = memo(() => {
             initial="initial"
             animate="animate"
           >
-            <NavItem
-              as={motion.div}
-              variants={navItemVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <NavLink to="/home">首页</NavLink>
-            </NavItem>
-            <NavItem
-              as={motion.div}
-              variants={navItemVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <NavLink to="/articles">文章</NavLink>
-            </NavItem>
-            <NavItem
-              as={motion.div}
-              variants={navItemVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <NavLink to="/projects">项目</NavLink>
-            </NavItem>
-            <NavItem
-              as={motion.div}
-              variants={navItemVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <NavLink to="/knowledge">知识库</NavLink>
-            </NavItem>
-            <NavItem
-              as={motion.div}
-              variants={navItemVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <NavLink to="/about">关于</NavLink>
-            </NavItem>
+            {[
+              { to: "/home", text: "首页" },
+              { to: "/about", text: "关于我" },
+              { to: "/projects", text: "项目" },
+              { to: "/articles", text: "文章" },
+              { to: "/knowledge", text: "知识库" }
+            ].map((item) => (
+              <NavItem
+                key={item.to}
+                as={motion.div}
+                variants={navItemVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <NavLink to={item.to}>
+                  {item.text}
+                </NavLink>
+              </NavItem>
+            ))}
           </Nav>
           <ThemeToggle />
         </RightSection>
