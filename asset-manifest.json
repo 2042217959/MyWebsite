@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.e6c13ad2.css",
-    "main.js": "./static/js/main.f8dc9beb.js",
+    "main.js": "./static/js/main.a7c0e9c4.js",
     "static/media/wyymusic2.png": "./static/media/wyymusic2.bd8b4b3197eb80cf777d.png",
     "static/media/photo.jpg": "./static/media/photo.5523346e5f0317027134.jpg",
     "static/media/wyymusic.png": "./static/media/wyymusic.55c86a581d5edd01cd6b.png",
@@ -11,10 +11,10 @@
     "static/media/mywebsitepicture.png": "./static/media/mywebsitepicture.8c107deb5795d26b20b4.png",
     "index.html": "./index.html",
     "main.e6c13ad2.css.map": "./static/css/main.e6c13ad2.css.map",
-    "main.f8dc9beb.js.map": "./static/js/main.f8dc9beb.js.map"
+    "main.a7c0e9c4.js.map": "./static/js/main.a7c0e9c4.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.f8dc9beb.js"
+    "static/js/main.a7c0e9c4.js"
   ]
 }
