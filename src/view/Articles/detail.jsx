@@ -12,6 +12,7 @@ const ArticleDetailWrapper = styled.div`
   padding: 2rem;
   min-height: calc(100vh - 60px);
   background: ${props => props.theme.background};
+  transition: all 0.3s ease;
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -21,6 +22,7 @@ const ArticleDetailWrapper = styled.div`
     color: ${props => props.theme.textColor};
     line-height: 1.8;
     font-size: 1.1rem;
+    transition: color 0.3s ease;
 
     @media (max-width: 768px) {
       font-size: 1rem;
@@ -30,6 +32,7 @@ const ArticleDetailWrapper = styled.div`
       color: ${props => props.theme.textColor};
       margin: 2rem 0 1rem;
       font-weight: 600;
+      transition: color 0.3s ease;
     }
 
     h1 { 
@@ -120,6 +123,7 @@ const ArticleTitle = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
+  transition: color 0.3s ease;
 
   @media (max-width: 768px) {
     font-size: 1.8rem;
@@ -133,6 +137,7 @@ const ArticleInfo = styled.div`
   gap: 1rem;
   margin-bottom: 2rem;
   color: ${props => props.theme.secondaryText};
+  transition: color 0.3s ease;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -154,6 +159,7 @@ const Tag = styled.span`
   border-radius: 15px;
   font-size: 0.8rem;
   font-weight: 500;
+  transition: all 0.3s ease;
 `
 
 const ArticleDetail = memo(() => {
