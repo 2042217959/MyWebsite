@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
@@ -9,16 +8,23 @@ import { articles } from '../../data/articles'
 import { BackButton } from './style'
 
 const ArticleDetailWrapper = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
   padding: 2rem;
   min-height: calc(100vh - 60px);
   background: ${props => props.theme.background};
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 
   .markdown-content {
     color: ${props => props.theme.textColor};
     line-height: 1.8;
     font-size: 1.1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
 
     h1, h2, h3, h4, h5, h6 {
       color: ${props => props.theme.textColor};
@@ -26,9 +32,24 @@ const ArticleDetailWrapper = styled.div`
       font-weight: 600;
     }
 
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.8rem; }
-    h3 { font-size: 1.5rem; }
+    h1 { 
+      font-size: 2.2rem; 
+      @media (max-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+    h2 { 
+      font-size: 1.8rem; 
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+    h3 { 
+      font-size: 1.5rem; 
+      @media (max-width: 768px) {
+        font-size: 1.3rem;
+      }
+    }
 
     p {
       margin-bottom: 1.5rem;
@@ -40,17 +61,29 @@ const ArticleDetailWrapper = styled.div`
       border-radius: 3px;
       font-size: 0.9em;
       font-family: 'Fira Code', monospace;
+      word-break: break-word;
+      white-space: pre-wrap;
     }
 
     pre {
       margin: 1.5rem 0;
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
+      
+      code {
+        white-space: pre;
+        word-break: normal;
+        overflow-wrap: normal;
+      }
     }
 
     ul, ol {
       margin: 1rem 0;
       padding-left: 2rem;
+      
+      @media (max-width: 768px) {
+        padding-left: 1.5rem;
+      }
     }
 
     li {
@@ -66,6 +99,7 @@ const ArticleDetailWrapper = styled.div`
 
     img {
       max-width: 100%;
+      height: auto;
       border-radius: 8px;
       margin: 1.5rem 0;
     }
@@ -73,6 +107,7 @@ const ArticleDetailWrapper = styled.div`
     a {
       color: ${props => props.theme.accentColor};
       text-decoration: none;
+      word-break: break-word;
       &:hover {
         text-decoration: underline;
       }
@@ -85,6 +120,10 @@ const ArticleTitle = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `
 
 const ArticleInfo = styled.div`
@@ -94,6 +133,12 @@ const ArticleInfo = styled.div`
   gap: 1rem;
   margin-bottom: 2rem;
   color: ${props => props.theme.secondaryText};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 `
 
 const TagsContainer = styled.div`
@@ -123,30 +168,30 @@ const ArticleDetail = memo(() => {
       setArticle(foundArticle)
       // 加载 Markdown 文件
       fetch(foundArticle.markdownFile)
-        .then(response => response.text())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to load article content');
+          }
+          return response.text();
+        })
         .then(text => setMarkdown(text))
-        .catch(error => console.error('Error loading markdown:', error))
+        .catch(error => {
+          console.error('Error loading markdown:', error);
+          setMarkdown('# 文章加载失败\n\n很抱歉，文章内容加载失败。请稍后再试。');
+        });
     } else {
-      navigate('/articles')
+      navigate('/articles');
     }
-  }, [id, navigate])
+  }, [id, navigate]);
 
   if (!article) return null
 
   return (
     <ArticleDetailWrapper>
-      <BackButton
-        onClick={() => navigate('/articles')}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
+      <BackButton onClick={() => navigate('/articles')}>
         返回文章列表
       </BackButton>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div>
         <ArticleTitle>{article.title}</ArticleTitle>
         <ArticleInfo>
           <span>发布时间：{article.date}</span>
@@ -181,7 +226,7 @@ const ArticleDetail = memo(() => {
             {markdown}
           </ReactMarkdown>
         </div>
-      </motion.div>
+      </div>
     </ArticleDetailWrapper>
   )
 })

@@ -57,8 +57,8 @@ export const projects = [
   },
   {
     id: 2,
-    title: "音乐播放器(仿网易云）",
-    description: "仿造网易云音乐做的一个音乐播放器（当时拿来练手的项目，现在后端很多数据都过期了...）",
+    title: "在线音乐播放器",
+    description: "一个在线音乐播放器，样式参考的是网易云",
     images: [
       {
         url: wyymusic,
@@ -74,6 +74,7 @@ export const projects = [
       "音乐播放控制",
       "用户系统",
       "七天免登录功能",
+      "实现Ant Design组件库"
     ],
     challenges: [
       "如何处理音频流",
