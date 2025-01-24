@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 
 export const ArticlesWrapper = styled.div`
   max-width: 1200px;
-  margin: 0 auto;
   min-height: calc(100vh - 60px);
   padding: 2rem 2rem;
   background: ${props => props.theme.background};
